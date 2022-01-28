@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>board</title>
+    <link rel="stylesheet" th:href="@{/style.css}"/>
+</head>
+<body>
+<div class="container">
+    <h2>게시글 목록</h2>
+    <table class="board_list">
+        <colgroup>
+            <col width="15%"/>
+            <col width="*"/>
+            <col width="15%"/>
+            <col width="20%"/>
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">글번호</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${#lists.size(list)} > 0" th:each="list : ${list}">
+            <td th:text="${list.id}"></td>
+            <td class="title">
+                <a href="/board/selectBoardDetail.do?id="
+                    th:attrappend="href=${list.id}"
+                    th:text="${list.title}">
+                </a></td>
+            <td th:text="${#temporals.format(list.insertDay,
+                        'yyyy-MM-dd HH:mm::ss')}"></td>
+        </tr>
+        <tr th:unless="${#lists.size(list)} > 0">
+            <td colspan="3">조회된 결과가 없습니다.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/board/openBoardWrite.do" class="btn">글 쓰기</a>
+</div>
+</body>
+</html>

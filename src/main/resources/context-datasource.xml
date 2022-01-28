@@ -1,0 +1,6 @@
+<bean id="dataSource-mysql" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="${Globals.DriverClassName}"/>
+    <property name="url" value="${Globals.Url}" />
+    <property name="username" value="${Globals.UserName}"/>
+    <property name="password" value="${Globals.Password}"/>
+</bean>
